@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head th:replace="~{fragmentos/_header :: header('Conexao 360° - Serviço')}"></head>
+
+<body>
+	<!-- INÍCIO DA BARRA DE NAVEGAÇÃO -->
+	<!--Insere a fragment da navbar-->
+	<nav th:replace="~{fragmentos/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
+	<!-- FIM DA BARRA DE NAVEGAÇÃO -->
+	<!--INICIO LISTAGEM -->
+	<main class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>Área de Requisição:</h1>
+				<a th:href="@{/usuarioRequicoes/usuarioCadastroRequisicao}" class="btn btn-primary">Receber
+					Equipamento</a>
+			</div>
+		</div>
+		<br>
+		<div class="Jumbotron p-1 mb-4 bg-light rounded-3">
+			<h2 class="display-5 fw-bold">Minhas Requisições:</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Requisição</th>
+						<th scope="col">Necessidade</th>
+						<th scope="col">Tipo de Equipamento</th>
+						<th scope="col">Tipo Entrega</th>
+						<th scope="col">Data Entrega</th>
+						<th scope="col">Comentário</th>
+						<th scope="col">Status</th>
+						<th scope="col">Cancelar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="usuario : ${usuario}">
+						<th scope="row" th:text="${usuario.id}"></th>
+						<td th:text="${usuario.necessidade}"></td>
+						<td th:text="${usuario.tipoEquipamento}"></td>
+						<td th:text="${usuario.possuiEquipamento}"></td>
+						<td th:text="${usuario.divideEquipamento}"></td>
+						<td th:text="${usuario.rendaFamiliar}"></td>
+						<td th:text="${usuario.necessitaRetirada}"></td>
+						<td th:text="${usuario.dataEntrega}"></td>
+						<td th:text="${usuario.comentario}"></td>
+						<td>
+							<a th:href="@{/usuario/{id}/ (id=${usuario.id})}" class="btn btn-warning">
+								Status
+							</a>
+							<a th:href="@{/usuario/{id}/excluir (id=${usuario.id})}" class="btn btn-danger"
+								onclick="return confirm('Tem certeza que deseja cancelar a sua requisição?');">
+								Excluir
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="p-5 mb-4 bg-light rounded-3">
+			<h1 class="display-5 fw-bold">Receber Equipamento</h1>
+			<p class="col-md-11 fs-5">
+				O Projeto Conexão 360° busca ajudar a todos e <b>Mudar Vidas</b>
+				incentivamos para que as pessoas que realmente não tem a
+				oportunidade de adquirir um equipamento.<br> Pensando em como
+				beneficiar as pessoas com maior urgência de equipamento para
+				igualar as oportunidades, decidimos priorizar quem está próximo de
+				um vestibular ou ingressando o mercado de trabalho e quem não tem
+				nenhum dispositivo em casa. A prioritização será para as pessoas
+				com o maior número de pontos, que será calculado da seguinte forma:<br>
+			</p>
+			<h4>03 Pontos</h4>
+			<ul>
+				<li>Alunos cursando o 3º Ano do Ensino Médio ou 9º Ano do
+					Fundamental</li>
+				<li>Pessoas fora do mercado de trabalho com 40 anos ou mais</li>
+				<li>Quem não possui equipamento em casa</li>
+			</ul>
+			<h4>02 Pontos</h4>
+			<ul>
+				<li>Alunos cursando o 2º Ano do Ensino Médio ou 8º Ano do
+					Fundamental</li>
+				<li>Alunos de Cursos Profissionalizantes</li>
+				<li>Quem compartilha o equipamento com alguem da mesma
+					residência</li>
+			</ul>
+			<h4>01 Ponto</h4>
+			<ul>
+				<li>Graduandos e Pós-Graduandos</li>
+			</ul>
+
+			<a class="btn btn-primary" href="/cadastro-requisicao" role="button">Receber Equipamento</a>
+		</div>
+		<!-- INÍCIO DO FOOTER -->
+		<!--Insere a fragment do footer-->
+		<footer th:replace="~{fragmentos/_footer :: footer}"></footer>
+		<!-- FIM DO FOOTER -->
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+			integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+			crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+			integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+			crossorigin="anonymous"></script>
+</body>
+
+</html>
