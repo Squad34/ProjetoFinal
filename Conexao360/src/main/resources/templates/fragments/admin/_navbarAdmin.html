@@ -1,20 +1,23 @@
 <!-- Navbar -->
-<nav th:fragment="navbar(isLogged, usuario, isAdmin, notificacoes)" class="navbar navbar-expand-lg navbar-light bg-light">
+<nav th:fragment="navbar(isLogged, usuario, isAdmin)" class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/"><img src="../../logos/logo_small.png" />Conexão 360</a>
+        <a class="navbar-brand" href="/"><img src="../../logos/logo_small.png" />Conexão 360 - Admin</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-					<a class="nav-link" href="/index">Home</a>
+				<li class="nav-item">
+					<a class="nav-link" href="/admin/efetuarDoacao">Concretizar Doação</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/sobre">Sobre</a>
+					<a class="nav-link" href="/admin/listarDoacoes">Listar Doações</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/contato">Contato</a>
+					<a class="nav-link" href="/admin/listarRequisicoes">Listar Requisições</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/admin/listarUsuarios">Listar Usuários</a>
 				</li>
             </ul>
             <ul class="navbar-nav">
@@ -27,16 +30,14 @@
                 <li th:if="${isLogged}" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="'Área do '+ ${usuario.nome}"> Área do Usuário </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    	<li><a class="dropdown-item" href="/usuario/dados">Meus Dados</a></li>
-                        <li><a class="dropdown-item" href="/usuario/doacoes">Minhas Doações</a></li>
-                         <li><a class="dropdown-item" href="/usuario/requisicoes">Minhas Requisições</a></li>
-
-                        
+                    	<li><a class="dropdown-item" href="/page/dadosUsuario">Meus Dados</a></li>
+                        <li><a class="dropdown-item" href="/page/minhasViagens">Minhas Viagens</a></li>
+                        <li><a class="dropdown-item" href="/page/meusAlertas">Meus Alertas</a></li>
                         <!--Se o usuário for um administrador, inclui um link para o painél de administrador -->
-                        <li th:if="${isAdmin}">
+                        <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li th:if="${isAdmin}"><a class="dropdown-item" href="/admin/">Área Admin</a></li>
+                        <li><a class="dropdown-item" href="/">Área Usuário</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>

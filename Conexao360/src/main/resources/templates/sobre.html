@@ -1,77 +1,17 @@
 <!doctype html>
 <html lang="pt-br">
 
-<head th:replace="~{fragmentos/_header :: header('Conexao 360° - Sobre')}"></head>
+<!--Insere a fragment do cabeçalho-->
+<head th:replace="~{fragments/_header :: header('Conexão 360 - Home')}"></head>
+
 
 <body>
-	<!-- INÍCIO DA BARRA DE NAVEGAÇÃO -->
 	<!--Insere a fragment da navbar-->
-	<nav th:replace="~{fragmentos/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
-	<!-- FIM DA BARRA DE NAVEGAÇÃO -->
-	<!-- INÍCIO DO CAMPO SOBRE -->
-    <main class="container d-flex justify-content-center flex-column">
-      <!--Sobre nós-->
-      <div>
-        <h1>Por que devo escolher o Projeto Conexão 360°?</h1>
-      </div>
-      <div class="sobre bg-light">
-        <p class="m-3">Sobre nós:</p>
-        <p class="m-3 ">O projeto se baseia em revolucionar o mundo em prol de um só objetivo: "Mudar Vidas" oferecendo
-          oportunidades para uma sociedade que vive uma dura realidade. Nosso publico alvo e doadores voluntários,
-          entrariam em contato pela plataforma informando a sua necessidade de equipamento e/ou internet e logo seriam
-          encaminhados a nossa área de triagem.
-        </p>
-        <p class="m-3 ">O mundo está mudando, hoje as empresas estão cada vez mais preocupadas com a Responsabilidade
-          Social, afinal, 66% dos consumidores globais estão dispostos a pagar mais por produtos sustentáveis.
-          Além disso, 86% dos consumidores esperam que as empresas atuem de forma responsável com sua sociedade, é por
-          isso que o nosso projeto Conexão 360° quer mudar a realidade de muitas famílias oferecendo
-          possibilidade de transformações, replicando e escalando cada vez mais o projeto.
-          Através deste portal destinado a arrecadação de equipamentos doados e a solucionar a falta de acesso a
-          internet e enviados para entidades/pessoas carentes, fazendo de modo que facilite o acesso aos dispositivos e
-          toda a infraestrutura adequada, contando com empresas parcerias nos quais já foram mapeadas trançando um plano
-          de ação e logística, para tornar tudo isso possível.</p>
-      </div>
-      <!--Missão-->
-      <div>
-        <h1>Qual a nossa missão?</h1>
-      </div>
-      <div class="sobre bg-light">
-        <p class="m-3 ">Queremos ser o maior grupo de pessoas apaixonadas que trabalham de forma simples e alinhada,
-          ser a empresa de maior credibilidade e referência dentro do mercado, oferecendo as melhores soluções tudo isto
-          dentro de uma estrutura segura aos nossos colaboradores. Isso nos permitirá oferecer uma proposta de valor
-          diferenciada e operar de maneira sustentável no longo prazo apresentando oportunidades de mudanças para
-          inúmeras famílias.
-        </p>
-      </div>
-      <!--Linha do Tempo-->
-      <div>
-        <h1>Linha do Tempo:</h1>
-      </div>
-      <div class="sobre bg-light">
-        <p class="m-3"><strong> 18/07/2022 - Nascimento do Projeto Social CONEXÃO 360°.</strong></p>
-        <p class="m-3"> O projeto nasceu com a ideia de solucionar a <b>Falta de Acesso a Equipamentos e Internet do
-            país</b>, através de um estudo de caso iniciamos os trabalhos na região de (A DECIDIR). Proporcionando
-          assim, apoio e dando oportunidades para igualar acesso a população carente e sem estrutura.
-        </p>
-        <p class="m-3"><strong> 03/10/2022 - Segunda versão do Projeto Social CONEXÃO 360°.</strong></p>
-        <p class="m-3"> O site evoluiu, podendo agora efetuar cadastro de usuários que poderão doar equipamentos
-           ou também </b> fazer uma requisição de doação, que será cuidadosamente avaliada seguindo os critérios de pontos
-          proposto e em um futuro próximo, serão efetuadas as doações.
-        </p>
-        <p class="m-3"></p>
-      </div>
-    </main>
-    <!-- FIM DO CAMPO SOBRE -->
-	<!-- INÍCIO DO FOOTER -->
+	<nav th:replace="~{fragments/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
+	
+	<h1>Sobre</h1>
 	<!--Insere a fragment do footer-->
-	<footer th:replace="~{fragmentos/_footer :: footer}"></footer>
-	<!-- FIM DO FOOTER -->
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
-		integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
-		crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
-		integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
-		crossorigin="anonymous"></script>
+	<footer th:replace="~{fragments/_footer :: footer}"></footer>
 </body>
 
 </html>

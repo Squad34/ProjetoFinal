@@ -7,10 +7,11 @@
 
 <body>
 	<!--Insere a fragment da navbar-->
-	<nav th:replace="~{fragments/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
+	<nav th:replace="~{fragments/admin/_navbarAdmin :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin})}"></nav>
 	
-	<h1>Cadastro Usuário</h1>
+	<h1>Listar Usuários</h1>
 	<!--Insere a fragment do footer-->
-	<footer th:replace="~{fragments/_footer :: footer}"></footer>
+	<footer th:replace="~{fragments/admin/_footerAdmin :: footer}"></footer>
 </body>
+
 </html>

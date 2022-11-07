@@ -1,87 +1,17 @@
 <!doctype html>
 <html lang="pt-br">
 
-<head th:replace="~{fragmentos/_header :: header('Conexao 360° - Contato')}"></head>
+<!--Insere a fragment do cabeçalho-->
+<head th:replace="~{fragments/_header :: header('Conexão 360 - Home')}"></head>
+
 
 <body>
-	<!-- INÍCIO DA BARRA DE NAVEGAÇÃO -->
 	<!--Insere a fragment da navbar-->
-	<nav th:replace="~{fragmentos/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
-	<!-- FIM DA BARRA DE NAVEGAÇÃO -->
-	<!-- INÍCIO DA ÁREA DE CONTATO -->
-	<main class="container d-flex justify-content-center flex-column">
-		<div>
-			<h1>Central de Atendimento</h1>
-		</div>
-		<div class="row padding">
-			<div class="col-md-4">
-				<div class="card">
-					<div class="card-body">
-						<h4 class="card-title">WhatsApp</h4>
-						<p class="card-text">(11)94020-8922</p>
-						<p class="card-text">
-							Tire dúvidas em nosso sistema e fale com um atendente.
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="card">
-					<div class="card-body">
-						<h4 class="card-title">Canal Telefônico</h4>
-						<p class="card-text">0800 4020-8922</p>
-						<p class="card-text">
-							Obtenha informações sobre nossos procedimentos.
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="card">
-					<div class="card-body">
-						<h4 class="card-title">Canal telefônico</h4>
-						<p class="card-text">(11) 4020-8922</p>
-						<p class="card-text">
-							Obtenha informações sobre nossos procedimentos.
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--Central de Ajuda-->
-		<div class="m-1">
-			<h5 class="m-1">Central de Ajuda:</h5>
-			<p class="m-1">
-				Envie a sua duvida para nosso e-mail:
-			</p>
-			<form action="">
-				<div class="contato">
-					<div class="m-1">
-						<div class="mb-3 m-1">
-							<label for="endereçoEmail" class="form-label"> Endereço de Email: </label>
-							<input type="email" class="form-control" id="endereçoEmail" placeholder="nome@exemplo.com">
-						</div>
-						<div class="mb-3 m-1">
-							<label for="mensagem" class="form-label">Mensagem:</label>
-							<textarea class="form-control" id="mensagem" rows="3"></textarea>
-						</div>
-						<input type="submit" class="btn btn-primary m-1" value="Enviar"></input>
-					</div>
-				</div>
-			</form>
-		</div>
-	</main>
-	<!-- FIM DA ÁREA DE CONTATO -->
-	<!-- INÍCIO DO FOOTER -->
+	<nav th:replace="~{fragments/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
+	
+	<h1>Contato</h1>
 	<!--Insere a fragment do footer-->
-	<footer th:replace="~{fragmentos/_footer :: footer}"></footer>
-	<!-- FIM DO FOOTER -->
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
-		integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
-		crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
-		integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
-		crossorigin="anonymous"></script>
+	<footer th:replace="~{fragments/_footer :: footer}"></footer>
 </body>
 
 </html>
