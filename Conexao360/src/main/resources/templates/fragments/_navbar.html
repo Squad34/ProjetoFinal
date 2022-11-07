@@ -1,0 +1,57 @@
+<!-- Navbar -->
+<nav th:fragment="navbar(isLogged, usuario, isAdmin, notificacoes)" class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/"><img src="../../logos/logo_small.png" />TripPoint</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+					<a class="nav-link" href="/page/index">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/page/destinos">Destino</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/page/promocoes">Promoções</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/page/contato">Contato</a>
+				</li>
+            </ul>
+            <ul class="navbar-nav">
+            <!--Verifica se o usuário está logado -->
+            <!--Se não estiver, o menu do usuário é substituido por um link de login -->
+            	<li th:if="${!isLogged}" class="nav-item">
+					<a class="nav-link" href="/login">Login</a>
+				</li>
+				<!--Se estiver, exibe o menu de usuário -->
+                <li th:if="${isLogged}" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="'Área do '+ ${usuario.nome}"> Área do Usuário </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    	<li><a class="dropdown-item" href="/page/dadosUsuario">Meus Dados</a></li>
+                        <li><a class="dropdown-item" href="/page/minhasViagens">Minhas Viagens</a></li>
+                        <li>
+                        	<a class="dropdown-item" href="/page/meusAlertas">Meus Alertas
+                        	<span th:if="${notificacoes>0}" class="badge rounded-pill badge-notification bg-danger" th:text="${notificacoes}"></span>
+                        	</a>
+                        </li>
+                        
+                        <!--Se o usuário for um administrador, inclui um link para o painél de administrador -->
+                        <li th:if="${isAdmin}">
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li th:if="${isAdmin}"><a class="dropdown-item" href="/admin/">Área Admin</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Navbar -->
