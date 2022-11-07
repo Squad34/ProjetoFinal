@@ -1,10 +1,17 @@
 <!doctype html>
 <html lang="pt-br">
 
-<head th:replace="~{fragmentos/_header :: header('TripPoint - Home')}"></head>
+<!--Insere a fragment do cabeçalho-->
+<head th:replace="~{fragments/_header :: header('Conexão 360 - Home')}"></head>
+
 
 <body>
+	<!--Insere a fragment da navbar-->
+	<nav th:replace="~{fragments/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
 	
+	<h1>Minhas Requisições</h1>
+	<!--Insere a fragment do footer-->
+	<footer th:replace="~{fragments/_footer :: footer}"></footer>
 </body>
 
 </html>
