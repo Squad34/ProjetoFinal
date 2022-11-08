@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-br">
+
+<!--Insere a fragment do cabeçalho-->
+<head th:replace="~{fragments/_header :: header('Conexão 360 - Home')}"></head>
+
+
+<body>
+	<!--Insere a fragment da navbar-->
+	<nav th:replace="~{fragments/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
+	
+			<!-- INÍCIO DO CADASTRO -->
+		<main class="container d-flex justify-content-center flex-column">
+			<h1>Receber Equipamento</h1>
+			<form th:action="@{/usuario/cadastrarRequisicao}" method="post" th:object="${requisicaoEquipamento}">
+				<!--Necessidade de Equipamento-->
+				<div class="mb-3">
+					<label for="nec" class="form-label">Por favor, informe a
+						sua necessidade para o uso deste equipamento:</label>
+						<select	class="form-select" th:field="*{necessidade}">
+						<option value="0" selected>Escolha...</option>
+						<option value="1" >Desempregado com mais de 40 anos de
+							idade</option>
+						<option value="2" >Cursando o 3° Ano do Ensino Médio ou 9°
+							Ano do Fundamental</option>
+						<option value="3">Cursando o 2° ano do Ensino Médio ou 8°
+							Ano do Fundamental</option>
+						<option value="4">Cursos Profissionalizantes</option>
+						<option value="5">Graduandos e Pós-Graduandos</option>
+					</select>
+				</div>
+				<!--Tipo Equipamento-->
+				<div class="mb-3">	
+					<label for="equipamento" class="form-label">Por favor,
+						informe o tipo de equipamento que precisa:</label>
+						<select class="form-select" aria-label="Default select example" th:field="*{tipoEquipamento}">
+						<option value="0" selected>Escolha...</option>
+						<option value="1">Computador</option>
+						<option value="2">Notebook</option>
+						<option value="3">Smartphone</option>
+					</select>
+				</div>
+				<!--Possui Equipamento-->
+				<div class="mb-3">
+					<label for="equipamento" class="form-label">Possui algum
+						equipamento na sua residência:</label>
+						<select class="form-select" aria-label="Default select example" th:field="*{possuiEquipamento}">
+						<option value="false" selected>Escolha...</option>
+						<option value="1">SIM</option>
+						<option value="0">NÃO</option>
+					</select>
+				</div>
+				<!--Divide o Equipamento-->
+				<div class="mb-3">
+					<label for="equipamento" class="form-label">Caso possua um
+						equipamento, você divide ele com mais alguém?</label>
+						<select	class="form-select" aria-label="Default select example" th:field="*{divideEquipamento}">
+						<option value="0" selected>Escolha...</option>
+						<option value="1">SIM</option>
+						<option value="0">NÃO</option>
+						<option value="0">NÃO POSSUO EQUIPAMENTO</option>
+					</select>
+				</div>
+				<!--Renda Familiar-->
+				<div class="mb-3">
+					<label for="renda" class="form-label">Renda Familiar:</label>
+					<select	class="form-select" aria-label="Default select example" th:field="*{rendaFamiliar}">
+						<option value="0" selected>Escolha...</option>
+						<option value="1">Até R$ 854,00</option>
+						<option value="2">Até R$ 1.113,00</option>
+						<option value="3">Até R$ 1.484,00</option>
+						<option value="4">Até R$ 2.674,00</option>
+						<option value="5">Até R$ 4.681,00</option>
+						<option value="6">Até R$ 9.897,00</option>
+						<option value="7">Até R$ 17.434,00</option>
+					</select>
+				</div>
+				<!--Tipo de Entrega-->
+				<div class="mb-3">
+					<label for="entrega" class="form-label">Tipo de Entrega:</label>
+					<div class="mb-3">
+						<input type="radio" name="opc" id="ag" value="true" th:field="*{necessitaRetirada}" required>
+						<label for="ag">Agendar Entrega</label>
+						<input type="radio"	name="opc" id="ll" value="false" th:field="*{necessitaRetirada}" required>
+						<label for="ll">Retirar	no Local</label>
+					</div>
+				</div>
+				<!--Data para Entrega-->
+				<div class="mb-3 m-1">
+					<label for="data" class="form-label">Data para Entrega:</label>
+					<input type="date" name="data" id="data" class="form-control" required th:field="*{dataEntrega}">
+				</div>
+				<!--Comentário-->
+				<div class="mb-3 m-1">
+					<label for="comentario" class="form-label">Comentário:</label>
+					<textarea class="form-control" id="dependentes" rows="3" th:field="*{comentario}"></textarea>
+				</div>
+				<!--Button enviar-->
+				<div class="m-1">
+					<input type="submit" class="btn btn-primary " value="Enviar">
+					<input type="reset" class="btn btn-primary" value="Limpar">
+				</div>
+			</form>
+		</main>
+		<!-- FIM DO CADASTRO -->
+	
+	<!--Insere a fragment do footer-->
+	<footer th:replace="~{fragments/_footer :: footer}"></footer>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+/*---------------------------------------------------------------*/
+/* Texto */
+/*---------------------------------------------------------------*/
+html, body {
+    font-family: 'poppins', sans-serif;
+    font-size:14px;
+}
+/*---------------------------------------------------------------*/
+/* Cores */
+/*---------------------------------------------------------------*/
+.navbar {
+    background-color: #227364;
+}
+
+.section{
+    background-color: #DCE8F2;
+}
+
+.contato, .card{
+    background-color: #F2E6D0;
+}
+
+.btn{
+    background-color: #3558C9;
+    border-color: #3558C9;
+    
+}
+
+footer{
+    background-color: #227364;
+}
+
+.card:hover{
+    background-color: #F55D3B;
+}
+
+.btn:hover {
+    background-color: #F55D3B;
+    border-color: #F55D3B;
+}
+
+/* Formatação */ 
+
+body {
+    overflow-x: hidden;
+}
+
+header{
+    padding-bottom: 20px;
+}
+
+main {
+    width: 100%;
+    min-height: calc(100vh - 200px);
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+}
+
+.section {
+    min-height: 100vh;
+    width: 100%;
+}
+
+.direction{
+    padding:10px;
+}
+/* Tabela*/
+
+.table{
+	width:100%;
+	border-collapse: collapse;
+}
+
+.table td, .table th{
+	padding:3px 3px;
+	text-align: center;
+}
+
+/* responsível*/
+@media(min-width:990){
+	.Jumbotron{
+		box-sizing: border-box;
+		font-size: 14px;
+	}
+}
+@media(min-width:771px){
+	.Jumbotron{
+		box-sizing: border-box;
+		
+		padding: 3px;
+		font-size: 13px;
+	}
+}
+@media(max-width:770px){
+	.Jumbotron{
+		box-sizing: border-box;
+		padding:2px;
+		font-size: 16px;
+	}
+	.table {
+		width:100%;
+	}
+	.table thead{
+		display: none;
+	}
+	
+	.table, .table.tbody, .table tr, .table td{
+		display:block;
+		width:100%;
+	}
+	
+	.table tr{
+		width:100%;
+		margin-bottom:10px;
+	}
+	
+	.table td{
+		width:100%;
+		text-align:right;
+		position:relative;
+		word-wrap: break-word;
+		text-indent: 250px;
+	}
+	
+	.btn{
+		text-indent: 1px;
+	}
+	
+	.table td::before{
+		content: attr(data-label);
+		position:absolute;
+		left:0;
+		width: 100%;
+		font-weight: bold;
+		text-align: left;
+		text-indent: 1px;
+	}
+}

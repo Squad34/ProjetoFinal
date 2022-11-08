@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="pt-br">
+
+<!--Insere a fragment do cabeçalho-->
+<head th:replace="~{fragments/_header :: header('Conexão 360 - Home')}"></head>
+
+
+<body>
+	<!--Insere a fragment da navbar-->
+	<nav th:replace="~{fragments/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
+		<!-- INÍCIO DO CADASTRO -->
+		<main class="container d-flex justify-content-center flex-column">
+			<h1>Inicie o seu Cadastro:</h1>
+			<form th:action="@{/cadastrarUsuario}" method="post" th:object="${usuario}">
+				<div class="mb-3">
+					<!--Nome-->
+					<div class="mb-3">
+						<label for="nome" class="form-label">Nome:</label> <input
+							type="text" name="nome" id="nome" class="form-control" required
+							placeholder="Nome:" th:field="*{nome}">
+					</div>
+					<!--Sobrenome-->
+					<div class="mb-3">
+						<label for="nome" class="form-label">Sobrenome:</label> <input
+							type="text" name="sobrenome" id="sobrenome" class="form-control" required
+							placeholder="Sobrenome:" th:field="*{sobrenome}">
+					</div>
+					<!--RG-->
+					<div class="mb-3">
+						<label for="nome" class="form-label">RG:</label> <input
+							type="text" name="nome" id="nome" class="form-control" required
+							placeholder="RG" th:field="*{rg}">
+					</div>
+					<!--CPF-->
+					<div class="mb-3">
+						<label for="cpf" class="form-label">CPF:</label> <input
+							type="text" name="nome" id="nome" class="form-control" required
+							placeholder="CPF:" th:field="*{cpf}">
+					</div>
+					<!--Email-->
+					<div class="mb-3">
+						<label for="email" class="form-label">Email:</label> <input
+							type="email" name="username" id="username" class="form-control"
+							required placeholder="Email:" th:field="*{username}">
+					</div>
+					<!--Senha-->
+					<div class="mb-3">
+						<label for="senha" class="form-label">Senha:</label> <input
+							type="text" name="password" id="password" class="form-control"
+							required placeholder="Senha:" th:field="*{password}">
+					</div>
+
+					<!--Telefone-->
+					<div class="mb-3">
+						<label for="tel" class="form-label">Telefone:</label> <input
+							type="tel" name="tel" id="tel" class="form-control"
+							maxlength="11" required placeholder="Ex: 11912345678" th:field="*{telefone}">
+					</div>
+					<!--Estado-->
+					<label for="estado" class="form-label">Estado:</label>
+					<select	class="form-select" aria-label="Default select example" th:field="*{estado}">
+						<option value="Default" selected>Escolha um Estado:</option>
+						<option value="AC">AC</option>
+						<option value="AL">AL</option>
+						<option value="AP">AP</option>
+						<option value="AM">AM</option>
+						<option value="BA">BA</option>
+						<option value="CE">CE</option>
+						<option value="ES">ES</option>
+						<option value="GO">GO</option>
+						<option value="MA">MA</option>
+						<option value="MT">MT</option>
+						<option value="MS">MS</option>
+						<option value="MG">MG</option>
+						<option value="PA">PA</option>
+						<option value="PB">PB</option>
+						<option value="PR">PR</option>
+						<option value="PE">PE</option>
+						<option value="PI">PI</option>
+						<option value="RJ">RJ</option>
+						<option value="RN">RN</option>
+						<option value="RS">RS</option>
+						<option value="RO">RO</option>
+						<option value="RR">RR</option>
+						<option value="SC">SC</option>
+						<option value="SP">SP</option>
+						<option value="SE">SE</option>
+						<option value="TO">TO</option>
+					</select>
+					<!--Cidade-->
+					<div class="mb-3">
+						<label for="cidade" class="form-label">Cidade:</label> <input
+							type="text" class="form-control" id="cidade" required
+							placeholder="Cidade:" th:field="*{cidade}">
+						<div class="invalid-feedback">Por favor, digite a sua
+							cidade.</div>
+					</div>
+					<!--CEP-->
+					<div class="mb-3">
+						<label for="CEP" class="form-label">CEP:</label> <input
+							type="text" id="localPartida" class="form-control" required
+							placeholder="00000-000" th:field="*{cep}">
+					</div>
+					<!--Endereço-->
+					<div class="mb-3">
+						<label for="endereco" class="form-label">Endereço:</label> <input
+							type="text" class="form-control" id="endereco"
+							placeholder="Rua, N°" required th:field="*{endereco}">
+						<div class="invalid-feedback">Por favor, digite seu
+							endereço.</div>
+					</div>
+					<!--Complemento-->
+					<div class="mb-3">
+						<label for="complemento" class="form-label">Complemento<span
+							class="text-muted">(Opcional):</span></label> <input type="text"
+							class="form-control" id="complemento"
+							placeholder="Apartamento..." th:field="*{complemento}">
+					</div>
+				</div>
+				<!--Button enviar-->
+				
+				<div>
+					<div class="row justify-content-center">
+						<div class="col-lg-3 col-sm-3 m-1">
+							<input type="submit" class="btn btn-primary " value="Enviar">
+							<input type="reset" class="btn btn-primary" value="Limpar">
+						</div>
+					</div>
+				</div>
+		</main>
+	<footer th:replace="~{fragments/_footer :: footer}"></footer>
+</body>
+</html>

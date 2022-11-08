@@ -7,18 +7,16 @@
 
 <body>
 	<!--Insere a fragment da navbar-->
-	<nav th:replace="~{fragments/admin/_navbarAdmin :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin})}"></nav>
-
-<!-- INÍCIO DA ÁREA DE TRIAGEM -->
-		<main class="container d-flex flex-column">
+	<nav th:replace="~{fragments/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
+	
+	<!-- INÍCIO DA ÁREA DE TRIAGEM -->
+		<main class="container d-flex justify-content-center flex-column">
 			<div class="Jumbotron mb-4 rounded-3">
 				<h1 class="display-5 fw-bold">Minhas Requisições:</h1>
 				<table class="table">
 					<thead>
 						<tr>
-							<th scope="col">Requisição #</th>
-							<th scope="col">Usuario Nome</th>
-							<th scope="col">Usuario Id</th>
+							<th scope="col">Requisição</th>
 							<th scope="col">Necessidade</th>
 							<th scope="col">Tipo de Equipamento</th>
 							<th scope="col">Tipo Entrega</th>
@@ -29,8 +27,6 @@
 					</thead>					
 					<tr th:each="requisicaoEquipamento : ${requisicoes}">
 						<td data-label="Requisição nº" th:text="${requisicaoEquipamentoStat.index+1}"></td>
-						<td data-label="Nome Usuário" th:text="${requisicaoEquipamento.usuario.nome}"></td>
-						<td data-label="ID Usuário" th:text="${requisicaoEquipamento.usuario.id}"></td>
 						<td data-label="Necessidade" th:switch="${requisicaoEquipamento.necessidade}">
 							<a th:case="'1'">Desempregado com mais de 40 anos de
 							idade</a>
@@ -65,12 +61,46 @@
 					</tr>
 				</table>
 			</div>
+			<div class="p-5 mb-4 bg-light rounded-3">
+				<h1 class="display-5 fw-bold">Receber Equipamento</h1>
+				<p class="col-md-11 fs-5">
+					O Projeto Conexão 360° busca ajudar a todos e <b>Mudar Vidas</b>
+					incentivamos para que as pessoas que realmente não tem a
+					oportunidade de adquirir um equipamento.<br> Pensando em como
+					beneficiar as pessoas com maior urgência de equipamento para
+					igualar as oportunidades, decidimos priorizar quem está próximo de
+					um vestibular ou ingressando o mercado de trabalho e quem não tem
+					nenhum dispositivo em casa. A prioritização será para as pessoas
+					com o maior número de pontos, que será calculado da seguinte forma:<br>
+				</p>
+				<h4>03 Pontos</h4>
+				<ul>
+					<li>Alunos cursando o 3º Ano do Ensino Médio ou 9º Ano do
+						Fundamental</li>
+					<li>Pessoas fora do mercado de trabalho com 40 anos ou mais</li>
+					<li>Quem não possui equipamento em casa</li>
+				</ul>
+				<h4>02 Pontos</h4>
+				<ul>
+					<li>Alunos cursando o 2º Ano do Ensino Médio ou 8º Ano do
+						Fundamental</li>
+					<li>Alunos de Cursos Profissionalizantes</li>
+					<li>Quem compartilha o equipamento com alguem da mesma
+						residência</li>
+				</ul>
+				<h4>01 Ponto</h4>
+				<ul>
+					<li>Graduandos e Pós-Graduandos</li>
+				</ul>
+
+				<a class="btn btn-primary" href="/usuario/cadastroRequisicao"
+					role="button">Receber Equipamento</a>
+			</div>
+
 		</main>
 		<!-- FIM DA ÁREA DE TRIAGEM -->
-
-
 	<!--Insere a fragment do footer-->
-	<footer th:replace="~{fragments/admin/_footerAdmin :: footer}"></footer>
+	<footer th:replace="~{fragments/_footer :: footer}"></footer>
 </body>
 
 </html>

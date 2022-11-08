@@ -31,6 +31,11 @@ public class UsuarioDetailsService implements UserDetailsService{
 		return usuarioRepositorio.save(usuario);
 	}
 	
+	@Transactional
+	public void atualizarUsuario(Usuario usuario) {	
+		usuarioRepositorio.atualizarUsuario(usuario);
+	}
+	
 	public List<Usuario> listarTodosLista(){
 		return usuarioRepositorio.findAll();
 	}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-br">
+
+<!--Insere a fragment do cabeçalho-->
+<head th:replace="~{fragments/_header :: header('Conexão 360 - Home')}"></head>
+
+
+<body>
+	<!--Insere a fragment da navbar-->
+	<nav th:replace="~{fragments/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
+	
+	<h1>Cadastro Doação</h1>
+			<!-- INÍCIO DO CADASTRO -->
+		<main class="container d-flex justify-content-center flex-column">
+			<h1>Doe um Equipamento</h1>
+			<form th:action="@{/usuario/cadastrarDoacao}" method="post" th:object="${doacaoEquipamento}">
+				<!--Tipo Equipamento-->
+				<div class="mb-3">
+					<label for="equipamento" class="form-label">Tipo de equipamento:</label>
+					<select class="form-select" aria-label="Default select example" th:field="*{tipoEquipamento}">
+						<option value="0" selected>Selecione o tipo de equipamento está
+							disposto à doar:</option>
+						<option value="1">Computador</option>
+						<option value="2">Notebook</option>
+						<option value="3">Smartphone</option>
+					</select>
+				</div>
+				<!--Estado Equipamento-->
+				<div class="mb-3">
+					<label for="equipamento" class="form-label">Qual o estado do equipamento:</label>
+					<select class="form-select" aria-label="Default select example" th:field="*{estadoEquipamento}">
+						<option value="0" selected>Selecione o tipo de equipamento está	disposto à doar:</option>
+						<option value="1">Novo</option>
+						<option value="2">Pouco uso</option>
+						<option value="3">Bastante uso, mas funcional</option>
+						<option value="4">Liga, mas tem problemas</option>
+					</select>
+				</div>
+				<!--Tipo Coleta-->
+				<div class="mb-3">
+					<label for="coleta" class="form-label">Tipo de Coleta:</label>
+					<div class="mb-3">
+						<input type="radio" name="opc" id="ag" value="true" th:field="*{necessitaRetirada}" required />
+						<label for="ag">Agendar Coleta</label>
+						<input type="radio" name="opc" id="ll" value="false" th:field="*{necessitaRetirada}" required />
+						<label for="ll">Levar ao Local</label>
+					</div>
+				</div>
+				<!--Data Coleta-->
+				<div class="mb-3">
+					<label for="data" class="form-label">Agende sua coleta:</label> <input type="date" name="data"
+						id="data" class="form-control" th:field="*{dataColeta}" required />
+				</div>
+				<!--Comentário-->
+				<div class="mb-3 m-1">
+					<label for="comentario" class="form-label">Comentário:</label>
+					<textarea class="form-control" id="dependentes" rows="3" th:field="*{comentario}"></textarea>
+				</div>
+
+				<!--Button enviar-->
+				<div class="m-1">
+					<input type="submit" class="btn btn-primary" value="Enviar" />
+					<input type="reset"  class="btn btn-primary" value="Limpar" />
+				</div>
+				
+			</form>
+		</main>
+		<!-- FIM DO CADASTRO -->
+	<footer th:replace="~{fragments/_footer :: footer}"></footer>
+</body>
+
+</html>

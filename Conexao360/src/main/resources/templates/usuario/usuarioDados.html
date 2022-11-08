@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-br">
+
+<!--Insere a fragment do cabeçalho-->
+<head th:replace="~{fragments/_header :: header('Conexão 360 - Home')}"></head>
+
+
+<body>
+	<!--Insere a fragment da navbar-->
+	<nav th:replace="~{fragments/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
+	
+	<h1>Meus Dados</h1>
+	
+		<!--INICIO CADASTRO CLIENTE -->
+	<main class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>Seus dados</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<form th:action="@{/usuario/atualizarUsuario}" method="POST" th:object="${usuario}" enctype="multipart/form-data">
+					<div class="mb-3">
+						<label for="nome" class="form-label">Nome</label>
+						<input type="text" class="form-control" id="nome" th:field="*{nome}">
+					</div>
+					<div class="mb-3">
+						<label for="sobrenome" class="form-label">Sobrenome</label>
+						<input type="text" class="form-control" id="sobrenome" th:field="*{sobrenome}">
+					</div>
+					<div class="mb-3">
+						<label for="rg" class="form-label">Rg</label>
+						<input type="text" class="form-control" id="rg" th:field="*{rg}">
+					</div>
+					<div class="mb-3">
+						<label for="cpf" class="form-label">Cpf</label>
+						<input type="text" class="form-control" id="cpf" th:field="*{cpf}">
+					</div>
+					<div class="mb-3">
+						<label for="telefone" class="form-label">Telefone</label>
+						<input type="text" class="form-control" id="telefone" th:field="*{telefone}">
+					</div>
+					<div class="mb-3">
+						<label for="estado" class="form-label">Estado</label>
+						<input type="text" class="form-control" id="estado" th:field="*{estado}">
+					</div>
+					<div class="mb-3">
+						<label for="cidade" class="form-label">Cidade</label>
+						<input type="text" class="form-control" id="cidade" th:field="*{cidade}">
+					</div>
+					<div class="mb-3">
+						<label for="cep" class="form-label">Cep</label>
+						<input type="text" class="form-control" id="cep" th:field="*{cep}">
+					</div>
+					<div class="mb-3">
+						<label for="endereco" class="form-label">Endereco</label>
+						<input type="text" class="form-control" id="endereco" th:field="*{endereco}">
+					</div>
+					<div class="mb-3">
+						<label for="complemento" class="form-label">Complemento</label>
+						<input type="text" class="form-control" id="complemento" th:field="*{complemento}">
+					</div>
+					<br>
+					<button type="submit" class="btn btn-primary">Salvar</button>
+				</form>
+			</div>
+		</div>
+	</main>
+	<!-- FIM DO CADASTRO CLIENTE -->
+	<!--Insere a fragment do footer-->
+	<footer th:replace="~{fragments/_footer :: footer}"></footer>
+</body>
+
+</html>

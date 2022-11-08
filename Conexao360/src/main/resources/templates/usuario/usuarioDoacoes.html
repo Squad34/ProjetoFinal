@@ -2,22 +2,22 @@
 <html lang="pt-br">
 
 <!--Insere a fragment do cabeçalho-->
+
 <head th:replace="~{fragments/_header :: header('Conexão 360 - Home')}"></head>
 
 
 <body>
 	<!--Insere a fragment da navbar-->
-	<nav th:replace="~{fragments/admin/_navbarAdmin :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin})}"></nav>
+	<nav th:replace="~{fragments/_navbar :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin}, ${notificacoes})}"></nav>
 	
-	<main class="container d-flex flex-column">
-		<h1>Doações </h1>
+	<main class="container d-flex justify-content-center flex-column">
+		<h1>Área de Doação:</h1>
 		<div class="p-5 mb-4 bg-light rounded-3">
+			<h1 class="display-5 fw-bold">Minhas Doações:</h1>
 			<table class="table">
 				<thead>
 					<tr>
 						<th scope="col">Doação</th>
-						<th scope="col">ID Usuario</th>
-						<th scope="col">Nome Usuario</th>
 						<th scope="col">Tipo Equipamento</th>
 						<th scope="col">Estado Equipamento</th>
 						<th scope="col">Tipo Entrega</th>
@@ -30,8 +30,6 @@
 				</thead>
 				<tr th:each="doacaoEquipamento : ${doacoes}">
 					<td th:text="${doacaoEquipamentoStat.index+1}"></td>
-					<td th:text="${doacaoEquipamento.usuario.id}"></td>
-					<td th:text="${doacaoEquipamento.usuario.nome}"></td>
 					<td th:switch="${doacaoEquipamento.tipoEquipamento}">
 						<a th:case="'1'">Computador</a>
 						<a th:case="'2'">Notebook</a>
@@ -78,7 +76,20 @@
 				</tr>
 			</table>
 		</div>
+		<div class="p-5 mb-4 bg-light rounded-3">
+			<h1 class="display-5 fw-bold">Doar Equipamento</h1>
+			<p class="col-md-11 fs-5">Compartilhar é um ato de boa vontade
+				que impacta a vida de muitas pessoas. Esse gesto gera consequências
+				positivas que começam diretamente no projeto e vão muito além, o
+				equipamento que você puder contribuir poderá fazer toda a diferença
+				no apoio as pessoas carentes.</p>
+			<a class="btn btn-primary" href="/usuario/cadastroDoacao" role="button">Doar
+				Equipamento</a>
+		</div>
 	</main>
-	<footer th:replace="~{fragments/admin/_footerAdmin :: footer}"></footer>
+
+	<!--Insere a fragment do footer-->
+	<footer th:replace="~{fragments/_footer :: footer}"></footer>
 </body>
+
 </html>
