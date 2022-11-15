@@ -2,14 +2,109 @@
 <html lang="pt-br">
 
 <!--Insere a fragment do cabeçalho-->
+
 <head th:replace="~{fragments/_header :: header('Conexão 360 - Home')}"></head>
 
 
 <body>
 	<!--Insere a fragment da navbar-->
 	<nav th:replace="~{fragments/admin/_navbarAdmin :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin})}"></nav>
-	
-	<h1>Listar Usuários</h1>
+
+	<main class="container d-flex flex-column">
+		<div class="p-5 mb-4 bg-light rounded-3">
+			<div class="Jumbotron mb-4 rounded-3">
+				<div class="mb-1 p-1 bg-light">
+					<h5 class="fw-bold">Filtrar:</h5>
+					<form th:action="@{/admin/filtrarRequisicaoConcretizar}" method="post" th:object="${filtro}">
+						<div class="row justify-content-md-center">
+							<div class="col-md-auto">
+								<p for="estadoRequisicao" class="form-label">Requisições:</p>
+							</div>
+							<div class="col-md-auto">
+								<select class="form-select" th:field="*{estadoRequisicao}">
+									<option value="all" selected>Todas</option>
+									<option value="0">Não atendidas</option>
+									<option value="1">Atendidas</option>
+								</select>
+							</div>
+							<div class="col-md-auto align-middle">
+								<p for="tipoEquipamento" class="form-label">Tipo Equipamento:</p>
+							</div>
+							<div class="col-md-auto">
+								<select class="form-select" th:field="*{tipoEquipamento}">
+									<option value="all" selected>Todos</option>
+									<option value="1">Computador</option>
+									<option value="2">Notebook</option>
+									<option value="3">Smartphone</option>
+								</select>
+							</div>
+							<div class="col">
+								<input type="submit" class="btn btn-primary " value="Filtrar">
+							</div>
+						</div>
+
+					</form>
+				</div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Requisição #</th>
+							<th scope="col">Pontos</th>
+							<th scope="col">Usuario Nome</th>
+							<th scope="col">Usuario Id</th>
+							<th scope="col">Necessidade</th>
+							<th scope="col">Tipo de Equipamento</th>
+							<th scope="col">Tipo Entrega</th>
+							<th scope="col">Data Entrega</th>
+							<th scope="col">Comentário</th>
+							<th scope="col">Ações</th>
+						</tr>
+					</thead>
+					<tr th:each="requisicaoEquipamento : ${requisicoes}">
+						<td data-label="Requisição nº" th:text="${requisicaoEquipamentoStat.index+1}"></td>
+						<td data-label="Nome Usuário" th:text="${requisicaoEquipamento.pontos}"></td>
+						<td data-label="Nome Usuário" th:text="${requisicaoEquipamento.usuario.nome}"></td>
+						<td data-label="ID Usuário" th:text="${requisicaoEquipamento.usuario.id}"></td>
+						<td data-label="Necessidade" th:switch="${requisicaoEquipamento.necessidade}">
+							<a th:case="'1'">Desempregado com mais de 40 anos de
+								idade</a>
+							<a th:case="'2'">Cursando o 3° Ano do Ensino Médio ou 9°
+								Ano do Fundamental</a>
+							<a th:case="'3'">Cursando o 2° ano do Ensino Médio ou 8°
+								Ano do Fundamental</a>
+							<a th:case="'4'">Cursos Profissionalizantes</a>
+							<a th:case="'5'">Graduandos e Pós-Graduandos</a>
+						</td>
+						<td data-label="Tipo de Equipamento" th:switch="${requisicaoEquipamento.tipoEquipamento}">
+							<a th:case="'1'">Computador</a>
+							<a th:case="'2'">Notebook</a>
+							<a th:case="'3'">Smartphone</a>
+						</td>
+						<td data-label="Tipo Entrega" th:if="${requisicaoEquipamento.necessitaRetirada}">
+							<a>Necessita Entrega</a>
+						</td>
+						<td data-label="Tipo Entrega" th:if="${!requisicaoEquipamento.necessitaRetirada}">
+							<a>Retirarei Pessoalmente</a>
+						</td>
+						<td data-label="Data Entrega" th:if="${requisicaoEquipamento.necessitaRetirada}">
+							<a th:text="${requisicaoEquipamento.dataEntrega}"></a>
+						</td>
+						<td data-label="Data Entrega" th:if="${!requisicaoEquipamento.necessitaRetirada}">
+							<a>N/A</a>
+						</td>
+						<td data-label="Comentário" th:text="${requisicaoEquipamento.comentario}"></td>
+						<td data-label="Ações">
+							<a th:if="${!requisicaoEquipamento.requisicaoAtendida}"
+								th:href="@{/admin/efetivarDoacao/{id} (id=${requisicaoEquipamento.id})}"
+								class="btn btn-danger btn-block mb-4">Doar</a>
+							<p th:if="${requisicaoEquipamento.requisicaoAtendida}">Requisição Atendida</p>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</main>
+
 	<!--Insere a fragment do footer-->
 	<footer th:replace="~{fragments/admin/_footerAdmin :: footer}"></footer>
 </body>

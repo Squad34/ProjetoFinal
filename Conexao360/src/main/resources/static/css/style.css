@@ -7,12 +7,14 @@
 html, body {
     font-family: 'poppins', sans-serif;
     font-size:14px;
+    background-color: #DCE8F2;
 }
 /*---------------------------------------------------------------*/
 /* Cores */
 /*---------------------------------------------------------------*/
 .navbar {
     background-color: #227364;
+
 }
 
 .section{
@@ -20,13 +22,12 @@ html, body {
 }
 
 .contato, .card{
-    background-color: #F2E6D0;
+    background-color: white;
 }
 
 .btn{
     background-color: #3558C9;
     border-color: #3558C9;
-    
 }
 
 footer{

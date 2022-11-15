@@ -2,15 +2,57 @@
 <html lang="pt-br">
 
 <!--Insere a fragment do cabeçalho-->
+
 <head th:replace="~{fragments/_header :: header('Conexão 360 - Home')}"></head>
 
 
 <body>
 	<!--Insere a fragment da navbar-->
 	<nav th:replace="~{fragments/admin/_navbarAdmin :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin})}"></nav>
-	
-	<h1>Listar Usuários</h1>
+
+	<!-- INÍCIO DA ÁREA DE TRIAGEM -->
+	<main class="container d-flex flex-column">
+		<div class="p-5 mb-4 bg-light rounded-3">
+			<div class="Jumbotron mb-4 rounded-3">
+				<h3>Usuários:</h3>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col">Nome</th>
+							<th scope="col">Sobrenome</th>
+							<th scope="col">Autoridades</th>
+							<th scope="col">RG</th>
+							<th scope="col">CPF</th>
+							<th scope="col">Telefone</th>
+							<th scope="col">Estado</th>
+							<th scope="col">Cidade</th>
+							<th scope="col">Cep</th>
+							<th scope="col">Endereço</th>
+							<th scope="col">Complemento</th>
+						</tr>
+					</thead>
+					<tr th:each="usuario : ${usuarios}">
+						<td data-label="Id" th:text="${usuario.id}"></td>
+						<td data-label="Nome" th:text="${usuario.nome}"></td>
+						<td data-label="Sobrenome" th:text="${usuario.sobrenome}"></td>
+						<td data-label="Autoridades" th:text="${usuario.authorities}"></td>
+						<td data-label="RG" th:text="${usuario.rg}"></td>
+						<td data-label="CPF" th:text="${usuario.cpf}"></td>
+						<td data-label="Telefone" th:text="${usuario.telefone}"></td>
+						<td data-label="Estado" th:text="${usuario.estado}"></td>
+						<td data-label="Cidade" th:text="${usuario.cidade}"></td>
+						<td data-label="Cep" th:text="${usuario.cep}"></td>
+						<td data-label="Endereço" th:text="${usuario.endereco}"></td>
+						<td data-label="Complemento" th:text="${usuario.complemento}"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</main>
+	<!-- FIM DA ÁREA DE TRIAGEM -->
 	<!--Insere a fragment do footer-->
 	<footer th:replace="~{fragments/admin/_footerAdmin :: footer}"></footer>
 </body>
+
 </html>

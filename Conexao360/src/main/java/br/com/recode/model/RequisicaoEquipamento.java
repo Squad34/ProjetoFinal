@@ -1,4 +1,5 @@
 package br.com.recode.model;
+
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -16,7 +17,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder	
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -30,10 +31,55 @@ public class RequisicaoEquipamento {
 	private boolean possuiEquipamento;
 	private boolean divideEquipamento;
 	private int rendaFamiliar;
+	private int pontos;
 	private boolean necessitaRetirada;
-	@DateTimeFormat(iso=ISO.DATE)
+	private boolean requisicaoAtendida;
+	@DateTimeFormat(iso = ISO.DATE)
 	private Date dataEntrega;
 	private String comentario;
 	@ManyToOne
-    private Usuario usuario;
+	private Usuario usuario;
+
+	public void calcularPontos() {
+		
+		int tempPontos = 0;
+
+		switch (this.necessidade) {
+		case 1:
+			tempPontos += 1;
+			break;
+		case 2:
+			tempPontos += 2;
+			break;
+		case 3:
+			tempPontos += 1;
+			break;
+		default:
+			break;
+		}
+
+		if (!this.possuiEquipamento)
+			tempPontos += 2;
+		
+		if (!this.divideEquipamento)
+			tempPontos += 1;
+		
+		switch (this.rendaFamiliar) {
+		case 1:
+			tempPontos += 2;
+			break;
+		case 2:
+			tempPontos += 2;
+			break;
+		case 3:
+			tempPontos += 1;
+			break;
+		case 4:
+			tempPontos += 1;
+			break;
+		default:
+			break;
+		}
+		this.pontos = tempPontos;
+	}
 }

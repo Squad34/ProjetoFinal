@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-br">
+
+<!--Insere a fragment do cabeçalho-->
+
+<head th:replace="~{fragments/_header :: header('Conexão 360 - Home')}"></head>
+
+
+<body>
+	<!--Insere a fragment da navbar-->
+	<nav th:replace="~{fragments/admin/_navbarAdmin :: navbar(${isLogged}, ${usuarioNavbar}, ${isAdmin})}"></nav>
+
+	<main class="container">
+		<div class="p-5 mb-4 bg-light rounded-3">
+			<div class="row">
+				<div class="col-sm-12">
+					<h1>Detalhes da Requisição</h1>
+				</div>
+			</div>
+
+			<!-- Formulário Edição -->
+			<div class="col">
+
+				<!--Form-->
+				<form th:action="@{/cadastrarUsuario}" method="post" th:object="${doacao}">
+					<div class="mb-1 p-1 bg-light border">
+						<h5>Dados do Requerente</h5>
+						<label
+							th:text="'Nome: ' + ${requisicaoEquipamento.usuario.nome} +' '+ ${requisicaoEquipamento.usuario.sobrenome}"></label><br>
+					</div>
+					<div class="mb-1 p-1 bg-light border">
+						<h5>Dados da Requisição</h5>
+						<label
+							th:text="'Tipo de Equipamento Requisitado: ' + ${requisicaoEquipamento.tipoEquipamento}"></label><br>
+						<label th:text="'Pontos de prioridade: ' + ${requisicaoEquipamento.pontos}"></label>
+					</div>
+					<h5>Equipamentos Disponíveis</h5>
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Doação</th>
+								<th scope="col">ID Usuario</th>
+								<th scope="col">Nome Usuario</th>
+								<th scope="col">Tipo Equipamento</th>
+								<th scope="col">Estado Equipamento</th>
+								<th scope="col">Cancelar</th>
+							</tr>
+						</thead>
+						<tr th:each="doacaoEquipamento : ${doacoes}">
+							<td th:text="${doacaoEquipamentoStat.index+1}"></td>
+							<td th:text="${doacaoEquipamento.usuario.id}"></td>
+							<td th:text="${doacaoEquipamento.usuario.nome}"></td>
+							<td th:switch="${doacaoEquipamento.tipoEquipamento}">
+								<a th:case="'1'">Computador</a>
+								<a th:case="'2'">Notebook</a>
+								<a th:case="'3'">Smartphone</a>
+							</td>
+							<td th:switch="${doacaoEquipamento.estadoEquipamento}">
+								<a th:case="'1'">Novo</a>
+								<a th:case="'2'">Pouco Uso</a>
+								<a th:case="'3'">Funcional</a>
+								<a th:case="'4'">Com Problemas</a>
+							</td>
+							<td th:if="${!doacaoEquipamento.equipamentoDoado}">
+								<a th:href="@{/admin/concluirDoacao/requisicaoEquipamento/{requisicao}/DoacaoEquipamento/{doacaoEquip}(requisicao = ${requisicaoEquipamento.id}, doacaoEquip = ${doacaoEquipamento.id})}"
+									class="btn btn-danger btn-block mb-4">Doar este equipamento</a>
+							</td>
+							<td th:if="${doacaoEquipamento.equipamentoDoado}">
+								<a>Não é possível cancelar</a>
+							</td>
+						</tr>
+					</table>
+
+				</form>
+			</div>
+		</div>
+	</main>
+	<!--Insere a fragment do footer-->
+	<footer th:replace="~{fragments/admin/_footerAdmin :: footer}"></footer>
+</body>
+
+</html>
