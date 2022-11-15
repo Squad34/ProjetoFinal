@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+C:\Users\user\Desktop\Aulas de Programação - RECODE\AULAS\VSCODE\TRABALHO\ProjetoFinal\.metadata\.plugins\org.eclipse.jdt.core
+1427411131.index
+1511330054.index
+1865797976.index
