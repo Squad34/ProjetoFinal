@@ -49,4 +49,21 @@ public class DoacaoEquipamentoServico{
 	public void tornarIndisponivel(DoacaoEquipamento doacaoEquipamento) {
 		doacaoEquipamentoRepositorio.tornarIndisponivel(doacaoEquipamento);
 	}
+	
+	public List<DoacaoEquipamento> listarFiltro(String equipamentoDoado, String tipoEquipamento){
+		if(equipamentoDoado.equals("all") && tipoEquipamento.equals("all")) {
+			log.info("Manda tudo de tudo");
+			return doacaoEquipamentoRepositorio.findAll();
+		}
+		if(equipamentoDoado.equals("all")) {
+			log.info("manda todos filtrado tipo equipamento");
+			return doacaoEquipamentoRepositorio.findAllByTipoEquipamento(tipoEquipamento);
+		}
+		if(tipoEquipamento.equals("all")) {
+			log.info("manda todos filtrado estadoRequisicao");
+			return doacaoEquipamentoRepositorio.findAllByDisponibilidade(equipamentoDoado);
+		}
+		log.info("filtra mais");
+		return doacaoEquipamentoRepositorio.filtrarDoacoes(equipamentoDoado, tipoEquipamento);
+	}
 }

@@ -133,9 +133,11 @@ public class PageController {
 	//Somente Admin
 	//----------------------------------------
 	@GetMapping("/admin/listarDoacoes")
-	public ModelAndView listarDoacoes(Principal principal) {
+	public ModelAndView listarDoacoes(@RequestParam(required = false, defaultValue="all") String equipamentoDoado,
+			@RequestParam(required = false, defaultValue="all") String tipoEquipamento, Principal principal) {
 		ModelAndView modelAndView = new ModelAndView("admin/listarDoacoes.html");
-		List<DoacaoEquipamento> doacoes = doacaoEquipamentoServico.listarTodosLista();
+		List<DoacaoEquipamento> doacoes = doacaoEquipamentoServico.listarFiltro(equipamentoDoado, tipoEquipamento);
+		modelAndView.addObject("filtro", new Filtro(equipamentoDoado, tipoEquipamento));
 		modelAndView.addObject("doacoes", doacoes);
 		modelAndView = adicionarDadosUsuarioView(principal, modelAndView);
 	    return modelAndView;
@@ -263,6 +265,13 @@ public class PageController {
 	@PostMapping("/admin/filtrarRequisicaoConcretizar")
 	public ModelAndView filtrarRequisicaoConcretizar(Filtro filtro) {
 		ModelAndView modelAndView = new ModelAndView("redirect:/admin/efetuarDoacao?estadoRequisicao="+filtro.getEstadoRequisicao()
+														+"&tipoEquipamento="+filtro.getTipoEquipamento());
+		return modelAndView;
+	}
+	
+	@PostMapping("/admin/filtrarRequisicaoDoacao")
+	public ModelAndView filtrarRequisicaoDoacao(Filtro filtro) {
+		ModelAndView modelAndView = new ModelAndView("redirect:/admin/listarDoacoes?estadoRequisicao="+filtro.getEstadoRequisicao()
 														+"&tipoEquipamento="+filtro.getTipoEquipamento());
 		return modelAndView;
 	}

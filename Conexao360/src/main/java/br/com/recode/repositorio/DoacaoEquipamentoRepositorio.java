@@ -25,6 +25,15 @@ public interface DoacaoEquipamentoRepositorio extends JpaRepository<DoacaoEquipa
 			+ " AND equipamento_doado=0 AND tipo_equipamento=:t", nativeQuery = true)
 	List<DoacaoEquipamento> disponiveisPorTipoDispositivo(@Param("t") int tipoEquipamento);
 	
+	@Query(value = "select * from doacao_equipamento where tipo_equipamento=:t" , nativeQuery = true)
+	List<DoacaoEquipamento> findAllByTipoEquipamento(@Param("t")String tipoEquipamento);
+	
+	@Query(value = "select * from doacao_equipamento where equipamento_doado=:d" , nativeQuery = true)
+	List<DoacaoEquipamento> findAllByDisponibilidade(@Param("d")String equipamentoDoado);
+	
+	@Query(value = "select * from doacao_equipamento where equipamento_doado=:d and tipo_equipamento=:t" , nativeQuery = true)
+	List<DoacaoEquipamento> filtrarDoacoes(@Param("d")String equipamentoDoado, @Param("t")String tipoEquipamento);
+	
 	@Modifying
 	@Transactional
 	@Query(value = "update doacao_equipamento set equipamento_doado = 1"
